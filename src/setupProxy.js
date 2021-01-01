@@ -1,37 +1,32 @@
-import { createProxyMiddleware } from "http-proxy-middleware";
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
-export default (app) => {
+module.exports = (app) => {
     app.use(
-        createProxyMiddleware(
-            "/seven", {
+        "/seven", 
+        createProxyMiddleware({
             target: "http://www.7-eleven.co.kr",
             changeOrigin: true,
             pathRewrite: {
                 "^/seven/": ""
             }
-        }
-        )
+        })
     );
     app.use(
-        createProxyMiddleware(
-            "/gs", {
+        "/gs", createProxyMiddleware({
             "target": "http://gs25.gsretail.com",
             "changeOrigin": true,
             "pathRewrite": {
                 "^/gs": ""
             }
-        }
-        )
+        })
     );
     app.use(
-        createProxyMiddleware(
-            "/cu": {
+        "/cu", createProxyMiddleware({
             "target": "http://cu.bgfretail.com",
             "changeOrigin": true,
             "pathRewrite": {
                 "^/cu": ""
             }
-        }
-        )
+        })
     );
 };
