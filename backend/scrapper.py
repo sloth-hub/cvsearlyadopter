@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
 
 options = webdriver.ChromeOptions()
 options.add_argument("headless")    # 웹 브라우저를 띄우지 않는 headless chrome 옵션 적용
@@ -15,12 +17,19 @@ def extract_gs_prod(prod):
     return {"name": prod_name, "price": prod_price, "image": prod_image}
 
 def get_gs():
-    prods = []
+    gs_prods = []
     driver.get("http://gs25.gsretail.com/gscvs/ko/products/youus-freshfood")
-    prod_list = driver.find_elements_by_css_selector("ul.prod_list > li")
-    for prod in prod_list:
-        product = extract_gs_prod(prod)
-        prods.append(product)
-    return prods
+    for i in range(3):
+        time.sleep(1)
+        prod_list = driver.find_elements_by_css_selector("ul.prod_list > li")
+        for prod in prod_list:
+            new = prod.find_elements_by_css_selector("p.flg04")
+            if new:  # 신상품 표시가 있으면
+                product = extract_gs_prod(prod)
+                gs_prods.append(product)
+        next_btn = driver.find_element_by_css_selector("div.paging > a.next")
+        next_btn.click()
+    driver.close()
+    return gs_prods
 
 print(get_gs())
