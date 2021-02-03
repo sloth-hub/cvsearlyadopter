@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Scraper from "./Scraper";
 
 const App = () => {
@@ -6,8 +7,9 @@ const App = () => {
   const [placeholder, setPlaceholder] = useState('Hi');
 
   useEffect(() => {
-    fetch("/hello").then(res => res.json()).then(data => {
-      setPlaceholder(data.result);
+
+    axios.get("/scrapper").then(res => {
+      console.log(res);
     });
   }, []);
 

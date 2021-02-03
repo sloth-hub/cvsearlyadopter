@@ -8,24 +8,6 @@ options.add_argument("disable-gpu")    # GPU 사용 안함
 options.add_argument("lang=ko_KR")    # 언어 설정
 driver = webdriver.Chrome("./chromedriver", options=options)  # 옵션적용
 
-driver.execute_script('window.open("about:blank", "_blank");') # 탭 두개 더 열기
-driver.execute_script('window.open("about:blank", "_blank");') 
-
-tabs = driver.window_handles
-
-# TAB_1_GS25
-driver.switch_to_window(tabs[0])
-driver.get("http://gs25.gsretail.com/gscvs/ko/products/youus-freshfood")
- 
-# TAB_2_7-Eleven
-driver.switch_to_window(tabs[1])
-driver.get("https://7-eleven.co.kr/product/bestdosirakList.asp")
- 
-# TAB_3_CU
-driver.switch_to_window(tabs[2])
-driver.get("http://cu.bgfretail.com/product/product.do?category=product&depth2=4")
-
-
 def extract_gs_prod(prod):
     prod_name = prod.find_element_by_css_selector("p.tit").text
     prod_price = prod.find_element_by_css_selector("p.price").text
@@ -35,7 +17,7 @@ def extract_gs_prod(prod):
 
 def get_gs():
     gs_prods = []
-    driver.switch_to_window(tabs[0])
+    driver.get("http://gs25.gsretail.com/gscvs/ko/products/youus-freshfood")
     for i in range(3):
         time.sleep(1)
         prod_list = driver.find_elements_by_css_selector("ul.prod_list > li")
@@ -56,7 +38,7 @@ def extract_se_prod(prod):
 
 def get_se():
     se_prods = []
-    driver.switch_to_window(tabs[1])
+    driver.get("https://7-eleven.co.kr/product/bestdosirakList.asp")
     for i in range(2):
         time.sleep(1)
         prod_list = driver.find_elements_by_css_selector("div.dosirak_list > ul > li")
@@ -77,7 +59,7 @@ def extract_cu_prod(prod):
 
 def get_cu():
     cu_prods = []
-    driver.switch_to_window(tabs[2])
+    driver.get("http://cu.bgfretail.com/product/product.do?category=product&depth2=4")
     time.sleep(3)
     # 최신순 버튼 클릭
     newest_btn = driver.find_element_by_css_selector("li#setC > span > a")
@@ -100,4 +82,3 @@ def get_cu():
         
     return cu_prods
 
-print(get_cu())
