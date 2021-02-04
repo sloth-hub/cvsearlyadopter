@@ -21,3 +21,4 @@ def scrapper():
     #     new_prod = get_cu() # db가 없으면
     #     db["cu"] = new_prod
     # return jsonify(new_prod)
+    return
