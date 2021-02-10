@@ -9,7 +9,7 @@ const App = () => {
   useEffect(() => {
 
     axios.get("/scrapper").then(res => {
-      console.log(res);
+      console.log(res.data);
     });
   }, []);
 
