@@ -4,7 +4,7 @@ from flask_cors import CORS
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-from backend.scrapper import get_gs, get_se, get_cu
+from backend.scraper import get_gs, get_se, get_cu
 
 app = Flask(__name__)
 CORS(app)
@@ -13,7 +13,7 @@ CORS(app)
 def say_hello():
     return {"result": "hello world"}
 
-@app.route("/scrapper")
+@app.route("/scraper")
 def get_prods():
 
     if not firebase_admin._apps:

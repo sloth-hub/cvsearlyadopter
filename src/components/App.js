@@ -1,22 +1,15 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Scraper from "./Scraper";
+import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import Home from "../routes/Home";
+import Best from "../routes/Best";
 
 const App = () => {
 
-  const [placeholder, setPlaceholder] = useState('Hi');
-
-  useEffect(() => {
-
-    axios.get("/scrapper").then(res => {
-      console.log(res.data);
-    });
-  }, []);
-
   return (
-    <div>
-      {placeholder}
-    </div>
+    <HashRouter>
+      <Route path="/" exact={true} component={Home} />
+      <Route path="/best" component={Best} />
+    </HashRouter>
   );
 }
 
