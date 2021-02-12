@@ -5,27 +5,23 @@ const Scraper = () => {
 
     const [isLoading, setIsLoading] = useState(true);
 
-    let seData = [];
-    let gsData = [];
-    let cuData = [];
-
     useEffect(() => {
         
-        axios.get("/scraper").then(res => {
-            if (res.status === 200) {
-              setIsLoading(false);
-            }
-          });
+        // axios.get("/scraper").then(res => {
+        //     if (res.status === 200) {
+        //       setIsLoading(false);
+        //     }
+        //   });
 
     }, []);
 
     return (
-        <>
+        <div className="scraper_box">
             { isLoading ?
-                <div>Loading...</div>
-                : <div>scrap complete!</div>
+                <div className="scraper_loading">Loading...</div>
+                : <div className="scraper_loading">scrap complete!</div>
             }
-        </>
+        </div>
     );
 
 }

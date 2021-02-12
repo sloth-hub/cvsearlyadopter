@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { database } from "../fbase";
+import Navigation from "../components/Navigation";
 
 const Home = () => {
 
@@ -40,25 +41,41 @@ const Home = () => {
     }
 
     return (
-
-        <div className="new_prods">
-            <ul className="gs_new_prods">
-                {gsNewProds.map(newProd =>
-                    <NewProds key={newProd.id} newProd={newProd} />
-                )}
-            </ul>
-            <ul className="se_new_prods">
-                {seNewProds.map(newProd =>
-                    <NewProds key={newProd.id} newProd={newProd} />
-                )}
-            </ul>
-            <ul className="cu_new_prods">
-                {cuNewProds.map(newProd =>
-                    <NewProds key={newProd.id} newProd={newProd} />
-                )}
-            </ul>
-        </div>
-
+        <>
+            <header>
+                <Navigation />
+            </header>
+            <div className="main_container">
+                <section className="best_prods">
+                    <div className="best_prods title_box">
+                        <h1 className="best_prods title">BEST</h1>
+                    </div>
+                </section>
+                <section className="new_prods">
+                    <div className="new_prods title_box">
+                        <h1 className="new_prods title">NEW</h1>
+                    </div>
+                    <div className="new_prods_box">
+                        <ul className="gs_new_prods">
+                            {gsNewProds.map(newProd =>
+                                <NewProds key={newProd.id} newProd={newProd} />
+                            )}
+                        </ul>
+                        <ul className="se_new_prods">
+                            {seNewProds.map(newProd =>
+                                <NewProds key={newProd.id} newProd={newProd} />
+                            )}
+                        </ul>
+                        <ul className="cu_new_prods">
+                            {cuNewProds.map(newProd =>
+                                <NewProds key={newProd.id} newProd={newProd} />
+                            )}
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <footer>&copy; 2021 편리어답터. All rights reserved.</footer>
+        </>
     );
 
 }
