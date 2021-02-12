@@ -29,32 +29,12 @@ const Home = () => {
 
     }
 
-    const GsNewProds = ({ gsNewProd }) => {
+    const NewProds = ({ newProd }) => {
         return (
             <li>
-                <img src={gsNewProd.image} alt={gsNewProd.name} />
-                <h4>{gsNewProd.name}</h4>
-                <h5>{gsNewProd.price}</h5>
-            </li>
-        )
-    }
-
-    const SeNewProds = ({ seNewProd }) => {
-        return (
-            <li>
-                <img src={seNewProd.image} alt={seNewProd.name} />
-                <h4>{seNewProd.name}</h4>
-                <h5>{seNewProd.price}</h5>
-            </li>
-        )
-    }
-
-    const CuNewProds = ({ cuNewProd }) => {
-        return (
-            <li>
-                <img src={cuNewProd.image} alt={cuNewProd.name} />
-                <h4>{cuNewProd.name}</h4>
-                <h5>{cuNewProd.price}</h5>
+                <img src={newProd.image} alt={newProd.name} />
+                <h4>{newProd.name}</h4>
+                <h5>{newProd.price}</h5>
             </li>
         )
     }
@@ -63,18 +43,18 @@ const Home = () => {
 
         <div className="new_prods">
             <ul className="gs_new_prods">
-                {gsNewProds.map(gsNewProd =>
-                    <GsNewProds key={gsNewProd.id} gsNewProd={gsNewProd} />
+                {gsNewProds.map(newProd =>
+                    <NewProds key={newProd.id} newProd={newProd} />
                 )}
             </ul>
             <ul className="se_new_prods">
-                {seNewProds.map(seNewProd =>
-                    <SeNewProds key={seNewProd.id} seNewProd={seNewProd} />
+                {seNewProds.map(newProd =>
+                    <NewProds key={newProd.id} newProd={newProd} />
                 )}
             </ul>
             <ul className="cu_new_prods">
-                {cuNewProds.map(cuNewProd =>
-                    <CuNewProds key={cuNewProd.id} cuNewProd={cuNewProd} />
+                {cuNewProds.map(newProd =>
+                    <NewProds key={newProd.id} newProd={newProd} />
                 )}
             </ul>
         </div>

@@ -1,16 +1,14 @@
 import React from "react";
-import { HashRouter, Route } from "react-router-dom";
-import Home from "../routes/Home";
-import Best from "../routes/Best";
+import Router from "./Router";
+
 
 const App = () => {
 
   return (
-    <HashRouter>
-      <Route path="/" exact={true} component={Home} />
-      <Route path="/best" component={Best} />
-    </HashRouter>
-  );
+    <div className="container">
+      <Router />
+    </div>
+  )
 }
 
 export default App;
