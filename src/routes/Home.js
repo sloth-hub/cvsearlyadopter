@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { database } from "../fbase";
 import Navigation from "../components/Navigation";
 
@@ -33,18 +34,28 @@ const Home = () => {
     const NewProds = ({ newProd }) => {
         return (
             <li>
-                <img src={newProd.image} alt={newProd.name} />
-                <h4>{newProd.name}</h4>
-                <h5>{newProd.price}</h5>
+                <Link to={{
+                    pathname: `/prod/${newProd.id}`,
+                    state: {
+                        id: newProd.id,
+                        name: newProd.name,
+                        image: newProd.image,
+                        price: newProd.price,
+                        score: newProd.score
+                    }
+                }}>
+                    <img src={newProd.image} alt={newProd.name} />
+                    <h4>{newProd.name}</h4>
+                    <h5>{newProd.price}</h5>
+                    <span>{newProd.score}</span>
+                </Link>
             </li>
         )
     }
 
     return (
         <>
-            <header>
-                <Navigation />
-            </header>
+            <Navigation />
             <div className="main_container">
                 <section className="best_prods">
                     <div className="best_prods title_box">
