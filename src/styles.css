@@ -83,29 +83,30 @@ header nav ul li+li{
     
 }
 
-/* best prods */
-
-
 /* best prods, new prods */
-.new_prods .title_box,
-.best_prods .title_box {
+section.best_prods_wrap,
+section.new_prods_wrap {
+    
+}
+.best_prods.title_box,
+.new_prods.title_box {
     border: 1px solid #000;
     width: 100px;
     padding: 10px;
     text-align: center;
 }
-section.best_prods,
-section.new_prods {
-    
+.cvs_title_box {
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 8px;
+    text-align: center;
 }
-.best_prods_box,
-.new_prods_box {
-    
-}
-.best_prods_box ul,
-.new_prods_box ul {
+.best_prods_wrap ul,
+.new_prods_wrap ul {
     display: flex;
 }
+
+/* best prods */
 
 /* new prods */
 .new_prods_box img {

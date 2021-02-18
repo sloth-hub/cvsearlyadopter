@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { database } from "../fbase";
-import Navigation from "../components/Navigation";
 
 const Home = () => {
 
@@ -55,28 +54,37 @@ const Home = () => {
 
     return (
         <>
-            <Navigation />
             <div className="main_container">
-                <section className="best_prods">
+                <section className="best_prods_wrap">
                     <div className="best_prods title_box">
-                        <h1 className="best_prods title">BEST</h1>
+                        <h2 className="best_prods title">BEST</h2>
                     </div>
+                    <ul className="best_prods">
+                        
+                    </ul>
                 </section>
-                <section className="new_prods">
+                <section className="new_prods_wrap">
                     <div className="new_prods title_box">
-                        <h1 className="new_prods title">NEW</h1>
+                        <h2 className="new_prods title">NEW</h2>
                     </div>
-                    <div className="new_prods_box">
+                    <div className="new_prods_box gs">
+                        <h3 className="cvs_title_box gs">GS</h3>
                         <ul className="gs_new_prods">
                             {gsNewProds.map(newProd =>
                                 <NewProds key={newProd.id} newProd={newProd} />
                             )}
                         </ul>
+                    </div>
+                    <div className="new_prods_box se">
+                        <h3 className="cvs_title_box se">7-ELEVEN</h3>
                         <ul className="se_new_prods">
                             {seNewProds.map(newProd =>
                                 <NewProds key={newProd.id} newProd={newProd} />
                             )}
                         </ul>
+                    </div>
+                    <div className="new_prods_box cu">
+                        <h3 className="cvs_title_box cu">CU</h3>
                         <ul className="cu_new_prods">
                             {cuNewProds.map(newProd =>
                                 <NewProds key={newProd.id} newProd={newProd} />
@@ -85,7 +93,7 @@ const Home = () => {
                     </div>
                 </section>
             </div>
-            <footer>&copy; 2021 편리어답터. All rights reserved.</footer>
+
         </>
     );
 
