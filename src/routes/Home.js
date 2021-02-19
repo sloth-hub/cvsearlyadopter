@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { database } from "../fbase";
+import Prods from "../components/Prods";
 
 const Home = () => {
 
@@ -30,28 +31,6 @@ const Home = () => {
 
     }
 
-    const NewProds = ({ newProd }) => {
-        return (
-            <li>
-                <Link to={{
-                    pathname: `/prod/${newProd.id}`,
-                    state: {
-                        id: newProd.id,
-                        name: newProd.name,
-                        image: newProd.image,
-                        price: newProd.price,
-                        score: newProd.score
-                    }
-                }}>
-                    <img src={newProd.image} alt={newProd.name} />
-                    <h4>{newProd.name}</h4>
-                    <h5>{newProd.price}</h5>
-                    <span>{newProd.score}</span>
-                </Link>
-            </li>
-        )
-    }
-
     return (
         <>
             <div className="main_container">
@@ -71,7 +50,7 @@ const Home = () => {
                         <h3 className="cvs_title_box gs">GS</h3>
                         <ul className="gs_new_prods">
                             {gsNewProds.map(newProd =>
-                                <NewProds key={newProd.id} newProd={newProd} />
+                                <Prods key={newProd.id} prods={newProd} />
                             )}
                         </ul>
                     </div>
@@ -79,7 +58,7 @@ const Home = () => {
                         <h3 className="cvs_title_box se">7-ELEVEN</h3>
                         <ul className="se_new_prods">
                             {seNewProds.map(newProd =>
-                                <NewProds key={newProd.id} newProd={newProd} />
+                                <Prods key={newProd.id} prods={newProd} />
                             )}
                         </ul>
                     </div>
@@ -87,7 +66,7 @@ const Home = () => {
                         <h3 className="cvs_title_box cu">CU</h3>
                         <ul className="cu_new_prods">
                             {cuNewProds.map(newProd =>
-                                <NewProds key={newProd.id} newProd={newProd} />
+                                <Prods key={newProd.id} prods={newProd} />
                             )}
                         </ul>
                     </div>

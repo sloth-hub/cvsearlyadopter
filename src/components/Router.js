@@ -18,7 +18,6 @@ const Router = () => {
           <Route path="/se" component={SE} />
           <Route path="/cu" component={CU} />
           <Route path="/prod/:id" component={Detail} />
-          <Redirect from="*" to="/" />
         </HashRouter>
       );
 }
