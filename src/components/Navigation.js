@@ -14,13 +14,13 @@ const Navigation = () => {
                         <Link to="/best">BEST</Link>
                     </li>
                     <li>
-                        <Link to="/">GS25</Link>
+                        <Link to="/gs">GS25</Link>
                     </li>
                     <li>
-                        <Link to="/">7-ELEVEN</Link>
+                        <Link to="/se">7-ELEVEN</Link>
                     </li>
                     <li>
-                        <Link to="/">CU</Link>
+                        <Link to="/cu">CU</Link>
                     </li>
                 </ul>
                 <Scraper />
