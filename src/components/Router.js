@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Route, Redirect } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import Home from "../routes/Home";
 import Best from "../routes/Best";
 import Detail from "../routes/Detail";

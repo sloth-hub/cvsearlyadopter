@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { database } from "../fbase";
 import Prods from "../components/Prods";
 
@@ -16,16 +15,19 @@ const Home = () => {
     const getDatabase = async () => {
         await database.ref("gs").limitToLast(5).once("value").then(data => {
             const gsArray = Object.values(data.val());
+            gsArray.reverse();
             setGsNewProds(gsArray);
         });
 
         await database.ref("se").limitToLast(5).once("value").then(data => {
             const seArray = Object.values(data.val());
+            seArray.reverse();
             setSeNewProds(seArray);
         });
 
         await database.ref("cu").limitToLast(5).once("value").then(data => {
             const cuArray = Object.values(data.val());
+            cuArray.reverse();
             setCuNewProds(cuArray);
         });
 
