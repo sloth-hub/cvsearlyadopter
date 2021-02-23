@@ -35,7 +35,6 @@ def get_prods():
     result = update_database(gs_prods, se_prods, cu_prods)
     return jsonify(result)
 
-
 def update_database(gs_prods, se_prods, cu_prods):
     ref = db.reference()  # 데이터베이스 기본 위치
     fb = ref.get()
@@ -64,3 +63,6 @@ def update_new_prods(prods, directory):
         for i, v in enumerate(new_prods):
             ref.update({length+i: v})
         return f"{directory}의 신제품 업로드가 완료되었습니다."
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port="5000", debug=True)

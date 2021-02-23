@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { database } from "../fbase";
-import Prods from "../components/Prods";
+import NewProds from "../components/NewProds";
 
 const Home = () => {
 
@@ -52,7 +52,7 @@ const Home = () => {
                         <h3 className="cvs_title_box gs">GS</h3>
                         <ul className="gs_new_prods">
                             {gsNewProds.map(newProd =>
-                                <Prods key={newProd.id} prods={newProd} />
+                                <NewProds key={newProd.id} prods={newProd} />
                             )}
                         </ul>
                     </div>
@@ -60,7 +60,7 @@ const Home = () => {
                         <h3 className="cvs_title_box se">7-ELEVEN</h3>
                         <ul className="se_new_prods">
                             {seNewProds.map(newProd =>
-                                <Prods key={newProd.id} prods={newProd} />
+                                <NewProds key={newProd.id} prods={newProd} />
                             )}
                         </ul>
                     </div>
@@ -68,7 +68,7 @@ const Home = () => {
                         <h3 className="cvs_title_box cu">CU</h3>
                         <ul className="cu_new_prods">
                             {cuNewProds.map(newProd =>
-                                <Prods key={newProd.id} prods={newProd} />
+                                <NewProds key={newProd.id} prods={newProd} />
                             )}
                         </ul>
                     </div>

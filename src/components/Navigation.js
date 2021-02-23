@@ -8,7 +8,7 @@ const Navigation = () => {
             <nav>
                 <ul className="navi_box">
                     <li>
-                        <Link to="/">편리어답터</Link>
+                        <Link to="/" replace>편리어답터</Link>
                     </li>
                     <li>
                         <Link to="/best">BEST</Link>
