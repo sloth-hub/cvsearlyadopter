@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { database } from "../fbase";
 import NewProds from "../components/NewProds";
 
-const Home = () => {
+const Home = ({ userObj }) => {
 
     const [gsNewProds, setGsNewProds] = useState([]);
     const [seNewProds, setSeNewProds] = useState([]);

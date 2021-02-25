@@ -5,11 +5,12 @@ import moment from "moment";
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from '@material-ui/core/styles';
 
-const Detail = () => {
+const Detail = ({ userObj }) => {
 
     const [prod, setProd] = useState("");
     const [comment, setComment] = useState("");
     const [score, setScore] = useState(0);
+    const [rate, setRate] = useState(0);
 
     const location = useLocation();
     const history = useHistory();
@@ -20,6 +21,7 @@ const Detail = () => {
             return () => setProd("");
         } else {
             setProd(location.state);
+            setRate(location.state.score);
         }
     }, [history, location.state]);
 
@@ -34,8 +36,9 @@ const Detail = () => {
         evt.preventDefault();
         if (comment !== "") {
             const commentObj = {
-                text: comment,
+                creatorId: userObj.uid,
                 createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+                text: comment,
                 score: score
             }
             await dbService.collection("comment").add(commentObj);
@@ -79,10 +82,11 @@ const Detail = () => {
                     <img src={prod.image} alt={prod.name} />
                     <h4>{prod.name}</h4>
                     <h5>{prod.price}</h5>
-                    <span>{prod.score}</span>
+                    <Rating name="read-only" value={rate} readOnly />
+                    <span>{prod.score === 0 ? null : prod.socre}</span>
                 </section>
                 <section className="prod_review">
-                    <form className="commentForm">
+                    <form className="commentForm" onSubmit={onSubmit}>
                         <textarea
                             value={comment}
                             onChange={onChange}

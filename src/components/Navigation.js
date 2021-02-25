@@ -11,16 +11,16 @@ const Navigation = () => {
                         <Link to="/" replace>편리어답터</Link>
                     </li>
                     <li>
-                        <Link to="/best">BEST</Link>
+                        <Link to="/best" replace>BEST</Link>
                     </li>
                     <li>
-                        <Link to="/gs">GS25</Link>
+                        <Link to="/gs" replace>GS25</Link>
                     </li>
                     <li>
-                        <Link to="/se">7-ELEVEN</Link>
+                        <Link to="/se" replace>7-ELEVEN</Link>
                     </li>
                     <li>
-                        <Link to="/cu">CU</Link>
+                        <Link to="/cu" replace>CU</Link>
                     </li>
                 </ul>
                 <Scraper />
