@@ -11,7 +11,8 @@ const App = () => {
     authService.onAuthStateChanged((user) => {
       if (user) {
         setUserObj({
-          uid: user.uid
+          uid: user.uid,
+          displayName: user.displayName
         });
       } else {
         setUserObj(null);
@@ -27,7 +28,6 @@ const App = () => {
       userObj={userObj} /> 
       : <div>Loading...</div>
       }
-      
       <footer>&copy; 2021 편리어답터. All rights reserved.</footer>
     </div>
   )

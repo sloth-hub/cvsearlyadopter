@@ -1,5 +1,5 @@
-import React from "react";
-import { HashRouter, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { HashRouter, Redirect, Route, Switch } from "react-router-dom";
 import Home from "../routes/Home";
 import Best from "../routes/Best";
 import Detail from "../routes/Detail";
@@ -7,8 +7,13 @@ import Navigation from "../components/Navigation";
 import GS from "../routes/GS";
 import SE from "../routes/SE";
 import CU from "../routes/CU";
+import Login from "../routes/Login";
 
 const Router = ({ isLoggedIn, userObj }) => {
+
+  useEffect(() => {
+    console.log(isLoggedIn, userObj);
+  }, []);
   return (
     <HashRouter>
       <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
@@ -18,7 +23,20 @@ const Router = ({ isLoggedIn, userObj }) => {
       <Route path="/se" component={SE} />
       <Route path="/cu" component={CU} />
       <Route path="/prod/:id" component={Detail} userObj={userObj} />
-    </HashRouter>
+      <Redirect from="*" to="/" />
+      <Switch>
+        {isLoggedIn ? (
+          <>
+            <Redirect from="*" to="/" />
+          </>
+        ) : (
+            <>
+              <Route path="/login" component={Login} userObj={userObj} />
+              <Redirect from="*" to="/" />
+            </>
+          )}
+      </Switch>
+    </HashRouter >
   );
 }
 

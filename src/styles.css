@@ -49,6 +49,14 @@ table {
 a {
     text-decoration: none;
 }
+button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+button:focus {
+    outline: none;
+}
 
 /* container */
 .main_container {
@@ -72,14 +80,18 @@ header nav {
 header nav ul {
     display: flex;
 }
+header nav ul li {
+    line-height: 18px;
+}
 header nav ul li+li{
     margin-left: 10px;
 }
 .header_title {
     font-size: 32px;
 }
-.scraper_box {
-    
+.icon_loading, .icon_scrap {
+    width: 20px;
+    height: 20px;
 }
 
 /* best prods, new prods */
@@ -137,6 +149,65 @@ img {
     align-items: center;
 }
 
+/* auth */
+
+
+.authInput {
+    max-width: 320px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 1);
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: black;
+    box-sizing: content-box;
+  }
+  
+  .authSubmit {
+    text-align: center;
+    background: #04aaff;
+    color: white;
+    margin-top: 10px;
+    box-sizing: content-box;
+    cursor: pointer;
+  }
+  
+  .authError {
+    color: tomato;
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+  }
+  
+  .authSwitch {
+    color: #04aaff;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    display: block;
+    font-size: 12px;
+    text-decoration: underline;
+  }
+
+  .authBtns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .authBtn {
+    cursor: pointer;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 0px;
+    font-size: 12px;
+    text-align: center;
+    width: 150px;
+    background: white;
+    cursor: pointer;
+  }
 
 /* footer */
 

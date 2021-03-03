@@ -1,12 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { authService } from "../fbase";
 import Scraper from "../components/Scraper";
 
-const Navigation = () => {
+const Navigation = ({ isLoggedIn, userObj }) => {
+
+    const history = useHistory();
+
+    const onLogOutClick = () => {
+        const ok = window.confirm("Are you sure you want to log out?");
+        if (ok) {
+            authService.signOut();
+            history.push("/");
+            window.location.reload();
+        }
+    }
+
     return (
         <header>
             <nav>
-                <ul className="navi_box">
+                <ul className="navi_box left">
                     <li>
                         <Link to="/" replace>편리어답터</Link>
                     </li>
@@ -23,7 +36,23 @@ const Navigation = () => {
                         <Link to="/cu" replace>CU</Link>
                     </li>
                 </ul>
-                <Scraper />
+                <ul className="navi_box right">
+                    <li>
+                        <Scraper />
+                    </li>
+                    {isLoggedIn ? (
+                        <li>
+                            <button onClick={onLogOutClick} className="formBtn">
+                                LOGOUT
+                            </button>
+                        </li>
+                    ) : (
+                            <li>
+                                <Link to="/login" replace>Login</Link>
+                            </li>
+                        )}
+
+                </ul>
             </nav>
         </header>
     )
