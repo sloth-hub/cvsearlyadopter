@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import Rating from "@material-ui/lab/Rating";
+import Comment from "../components/Comment";
+import CommentForm from "../components/CommentForm";
 import { dbService } from "../fbase";
-import moment from "moment";
-import Rating from '@material-ui/lab/Rating';
-import { makeStyles } from '@material-ui/core/styles';
 
 const Detail = ({ userObj }) => {
 
     const [prod, setProd] = useState("");
-    const [comment, setComment] = useState("");
-    const [score, setScore] = useState(0);
     const [rate, setRate] = useState(0);
+    const [comments, setComments] = useState([]);
 
     const location = useLocation();
     const history = useHistory();
@@ -22,57 +21,20 @@ const Detail = ({ userObj }) => {
         } else {
             setProd(location.state);
             setRate(location.state.score);
+            getComment();
         }
     }, [history, location.state]);
 
-    const onChange = (evt) => {
-        const {
-            target: { value }
-        } = evt;
-        setComment(value);
-    }
-
-    const onSubmit = async (evt) => {
-        evt.preventDefault();
-        if (comment !== "") {
-            const commentObj = {
-                creatorId: userObj.uid,
-                createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
-                text: comment,
-                score: score
-            }
-            await dbService.collection("comment").add(commentObj);
-            setComment("");
-            setScore(0);
-        } else {
-            alert("내용을 입력해주세요.");
-        }
-    }
-
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            display: 'flex',
-            flexDirection: 'column',
-            '& > * + *': {
-                marginTop: theme.spacing(1),
-            },
-        },
-    }));
-
-    const HalfRating = () => {
-        const classes = useStyles();
-        return (
-            <div className={classes.root} >
-                <Rating name="customized-empty"
-                    defaultValue={0}
-                    value={score}
-                    precision={0.5}
-                    onChange={(evt, newValue) => {
-                        setScore(newValue);
-                    }} />
-            </div >
-        );
-
+    const getComment = () => {
+        dbService.collection(location.state.id)
+            .orderBy("createdAt", "desc")
+            .onSnapshot((snapshot) => {
+                const commentArray = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setComments(commentArray);
+            });
     }
 
     return (
@@ -86,22 +48,14 @@ const Detail = ({ userObj }) => {
                     <span>{prod.score === 0 ? null : prod.socre}</span>
                 </section>
                 <section className="prod_review">
-                    <form className="commentForm" onSubmit={onSubmit}>
-                        <textarea
-                            value={comment}
-                            onChange={onChange}
-                            placeholder="제품이 어떤지 말해주세요."
-                            maxLength={120}
-                            spellCheck="false"
-                            className="comment_input" />
-                        <HalfRating /><span>{score}</span>
-                        <input type="submit" value="등록" />
-                    </form>
+                    <CommentForm userObj={userObj}
+                        prod={prod} />
                     <div className="comment_list_wrap">
-                        <ul className="comment_list">
-                            <li>comment</li>
-                            <li>comment</li>
-                        </ul>
+                        {comments.map(comment =>
+                            <Comment key={comment.id}
+                                commentObj={comment}
+                                isOwner={comment.creatorId === userObj.uid} />
+                        )}
                     </div>
                 </section>
             </div>

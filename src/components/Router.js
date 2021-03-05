@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { HashRouter, Redirect, Route, Switch } from "react-router-dom";
 import Home from "../routes/Home";
 import Best from "../routes/Best";
@@ -11,18 +11,27 @@ import Login from "../routes/Login";
 
 const Router = ({ isLoggedIn, userObj }) => {
 
-  useEffect(() => {
-    console.log(isLoggedIn, userObj);
-  }, []);
   return (
     <HashRouter>
       <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
-      <Route path="/" exact={true} component={Home} userObj={userObj} />
-      <Route path="/best" component={Best} />
-      <Route path="/gs" component={GS} />
-      <Route path="/se" component={SE} />
-      <Route path="/cu" component={CU} />
-      <Route path="/prod/:id" component={Detail} userObj={userObj} />
+      <Route exact path="/">
+        <Home userObj={userObj} />
+      </Route>
+      <Route exact path="/best">
+        <Best userObj={userObj} />
+      </Route>
+      <Route exact path="/gs">
+        <GS userObj={userObj} />
+      </Route>
+      <Route exact path="/se">
+        <SE userObj={userObj} />
+      </Route>
+      <Route exact path="/cu">
+        <CU userObj={userObj} />
+      </Route>
+      <Route path="/prod/:id">
+        <Detail userObj={userObj} />
+      </Route>
       <Redirect from="*" to="/" />
       <Switch>
         {isLoggedIn ? (
