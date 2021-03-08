@@ -21,21 +21,17 @@ const Detail = ({ userObj }) => {
         } else {
             setProd(location.state);
             setRate(location.state.score);
-            getComment();
+            dbService.collection(location.state.id)
+                .orderBy("createdAt", "desc")
+                .onSnapshot((snapshot) => {
+                    const commentArray = snapshot.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data(),
+                    }));
+                    setComments(commentArray);
+                });
         }
     }, [history, location.state]);
-
-    const getComment = () => {
-        dbService.collection(location.state.id)
-            .orderBy("createdAt", "desc")
-            .onSnapshot((snapshot) => {
-                const commentArray = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-                setComments(commentArray);
-            });
-    }
 
     return (
         <div className="main_container">
@@ -54,6 +50,7 @@ const Detail = ({ userObj }) => {
                         {comments.map(comment =>
                             <Comment key={comment.id}
                                 commentObj={comment}
+                                prodId={location.state.id}
                                 isOwner={comment.creatorId === userObj.uid} />
                         )}
                     </div>
