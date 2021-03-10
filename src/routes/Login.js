@@ -11,10 +11,9 @@ const Login = ({userObj}) => {
     const history = useHistory();
 
     useEffect(()=> {
-        console.log(userObj);
-        // if (!userObj) {
-        //     history.push("/");
-        // }
+        if (userObj !== undefined) {
+            history.push("/");
+        }
     },[history, userObj]);
 
     const onChange = (evt) => {

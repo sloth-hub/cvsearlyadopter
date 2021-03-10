@@ -23,12 +23,13 @@ const CommentForm = ({ userObj, prod }) => {
                 alert("최소 별점은 0.5점 입니다.");
             } else {
                 const commentObj = {
+                    prodId: prod.id,
                     creatorId: userObj.uid,
                     createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
                     text: comment,
                     score: score
                 }
-                await dbService.collection(prod.id).add(commentObj);
+                await dbService.collection("comments").add(commentObj);
                 setComment("");
                 setScore(0);
             }

@@ -21,17 +21,22 @@ const Detail = ({ userObj }) => {
         } else {
             setProd(location.state);
             setRate(location.state.score);
-            dbService.collection(location.state.id)
-                .orderBy("createdAt", "desc")
-                .onSnapshot((snapshot) => {
-                    const commentArray = snapshot.docs.map(doc => ({
-                        id: doc.id,
-                        ...doc.data(),
-                    }));
-                    setComments(commentArray);
-                });
+            getComments();
         }
     }, [history, location.state]);
+
+    const getComments = () => {
+        dbService.collection("comments")
+            .where("prodId","==", location.state.id)
+            .orderBy("createdAt", "desc")
+            .onSnapshot((snapshot) => {
+                const commentArray = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setComments(commentArray);
+            });
+    }
 
     return (
         <div className="main_container">

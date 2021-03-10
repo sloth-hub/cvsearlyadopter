@@ -45,6 +45,7 @@ const Navigation = ({ isLoggedIn, userObj }) => {
                             <button onClick={onLogOutClick} className="formBtn">
                                 LOGOUT
                             </button>
+                            <span>{userObj.displayName}</span>
                         </li>
                     ) : (
                             <li>
