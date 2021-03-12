@@ -2,7 +2,7 @@ import React from "react";
 import { dbService } from "../fbase";
 import Rating from "@material-ui/lab/Rating";
 
-const Comment = ({commentObj, prodId, isOwner}) => {
+const Comment = ({commentObj, prodId, userObj}) => {
 
     const onDeleteClick = async () => {
         const ok = window.confirm("정말로 삭제하시겠습니까?");
@@ -22,7 +22,7 @@ const Comment = ({commentObj, prodId, isOwner}) => {
         <div className="comment">
             <Rating name="size-small" defaultValue={commentObj.score} size="small" readOnly />
             <p>{commentObj.text}</p>
-            {isOwner && <Actions />}
+            {userObj ? (userObj.uid === commentObj.creatorId && <Actions />): null}
         </div>
     )
 }

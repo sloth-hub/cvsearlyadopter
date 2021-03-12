@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { dbService } from "../fbase";
 import Rating from '@material-ui/lab/Rating';
 
 const Prods = ({ prods }) => {
+
+    const [score, setScore] = useState(0);
+
+    useEffect(() => {
+        getScore();
+    }, []);
 
     const isNewest = (date) => {
         let year = date.substr(0, 4);
@@ -19,6 +26,19 @@ const Prods = ({ prods }) => {
         }
     }
 
+    const getScore = async () => {
+        const db = dbService.collection("comments");
+        const snapshot = await db.where("prodId", "==", prods.id).get();
+        const scores = [];
+        snapshot.forEach(doc => {
+            scores.push(
+                doc.data().score
+            );
+        });
+            const resultScore = scores.reduce((a, b) => a + b, 0) / scores.length;
+            setScore(resultScore);
+    }
+
     return (
         <li>
             <Link to={{
@@ -28,7 +48,7 @@ const Prods = ({ prods }) => {
                     name: prods.name,
                     image: prods.image,
                     price: prods.price,
-                    score: prods.score,
+                    score: score,
                     date: prods.date
                 }
             }}>
@@ -36,7 +56,7 @@ const Prods = ({ prods }) => {
                 <h4>{prods.name}</h4>{isNewest(prods.date) ? <span>new</span> : null}
             </Link>
             <h5>{prods.price}</h5>
-            <Rating name="read-only" value={prods.score} readOnly />
+            <Rating name="read-only" value={score} precision={0.5} readOnly />
         </li>
     )
 }

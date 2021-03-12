@@ -45,7 +45,7 @@ const Detail = ({ userObj }) => {
                     <img src={prod.image} alt={prod.name} />
                     <h4>{prod.name}</h4>
                     <h5>{prod.price}</h5>
-                    <Rating name="read-only" value={rate} readOnly />
+                    <Rating name="read-only" value={rate} precision={0.5} readOnly />
                     <span>{prod.score === 0 ? null : prod.socre}</span>
                 </section>
                 <section className="prod_review">
@@ -56,7 +56,7 @@ const Detail = ({ userObj }) => {
                             <Comment key={comment.id}
                                 commentObj={comment}
                                 prodId={location.state.id}
-                                isOwner={comment.creatorId === userObj.uid} />
+                                userObj={userObj} />
                         )}
                     </div>
                 </section>
