@@ -3,7 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import Rating from "@material-ui/lab/Rating";
 import Comment from "../components/Comment";
 import CommentForm from "../components/CommentForm";
-import { dbService } from "../fbase";
+import { dbService, database } from "../fbase";
 
 const Detail = ({ userObj }) => {
 
@@ -27,7 +27,7 @@ const Detail = ({ userObj }) => {
 
     const getComments = () => {
         dbService.collection("comments")
-            .where("prodId","==", location.state.id)
+            .where("prodId", "==", location.state.id)
             .orderBy("createdAt", "desc")
             .onSnapshot((snapshot) => {
                 const commentArray = snapshot.docs.map(doc => ({
@@ -36,6 +36,19 @@ const Detail = ({ userObj }) => {
                 }));
                 setComments(commentArray);
             });
+
+            updateScore();
+    }
+
+    const updateScore = () => {
+        // if (rate !== 0) {
+        //     database.ref(location.state.cvs).once("value", (snapshot)=> {
+        //         console.log(snapshot.val());
+        //     });
+        //     // database.ref(cvs).child(prod.id).update({
+        //     //     score: rate
+        //     // });
+        // }
     }
 
     return (

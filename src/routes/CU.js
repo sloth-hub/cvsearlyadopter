@@ -21,8 +21,8 @@ const CU = () => {
     return (
         <div className="main_container">
             <ul className="prods_list cu">
-                {cuProds.map(cuProd =>
-                    <Prods key={cuProd.id} prods={cuProd} />
+                {cuProds.map((cuProd, index) =>
+                    <Prods key={index} index={index} prods={cuProd} cvs="cu" />
                 )}
             </ul>
         </div>

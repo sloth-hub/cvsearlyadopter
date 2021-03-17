@@ -20,12 +20,14 @@ def extract_gs_prod(prod):
     prod_date = time.strftime('%Y%m%d', time.localtime(time.time()))
     prod_score = 0
     return {
-        "id": prod_id,
-        "name": prod_name,
-        "price": prod_price,
-        "image": prod_image,
-        "date": prod_date,
-        "score": prod_score
+        prod_id: {
+            "id": prod_id,
+            "name": prod_name,
+            "price": prod_price,
+            "image": prod_image,
+            "date": prod_date,
+            "score": prod_score
+        }
     }
 
 
@@ -56,12 +58,14 @@ def extract_se_prod(prod):
     prod_date = time.strftime('%Y%m%d', time.localtime(time.time()))
     prod_score = 0
     return {
-        "id": prod_id,
-        "name": prod_name,
-        "price": prod_price,
-        "image": prod_image,
-        "date": prod_date,
-        "score": prod_score
+        prod_id: {
+            "id": prod_id,
+            "name": prod_name,
+            "price": prod_price,
+            "image": prod_image,
+            "date": prod_date,
+            "score": prod_score
+        }
     }
 
 
@@ -72,13 +76,14 @@ def get_se():
         more_btn = driver.find_element_by_css_selector("li.btn_more > a")
         more_btn.click()
     time.sleep(1)
-    prod_list = driver.find_elements_by_css_selector("div.dosirak_list > ul > li")
+    prod_list = driver.find_elements_by_css_selector(
+        "div.dosirak_list > ul > li")
     for prod in prod_list[1:-1]:
         new = prod.find_elements_by_css_selector("li.ico_tag_03")
         if new:  # 신상품 표시가 있으면
             product = extract_se_prod(prod)
             se_prods.append(product)
-        
+
     return se_prods
 
 
@@ -91,12 +96,14 @@ def extract_cu_prod(prod):
     prod_date = time.strftime('%Y%m%d', time.localtime(time.time()))
     prod_score = 0
     return {
-        "id": prod_id,
-        "name": prod_name,
-        "price": prod_price,
-        "image": prod_image,
-        "date": prod_date,
-        "score": prod_score
+        prod_id: {
+            "id": prod_id,
+            "name": prod_name,
+            "price": prod_price,
+            "image": prod_image,
+            "date": prod_date,
+            "score": prod_score
+        }
     }
 
 
@@ -108,7 +115,7 @@ def get_cu():
     # 최신순 버튼 클릭
     newest_btn = driver.find_element_by_css_selector("li#setC > span > a")
     newest_btn.click()
-    for i in range(5):
+    for i in range(3):
         time.sleep(2)
         try:  # 다음 페이지 버튼이 없는 경우 멈춤
             next_btn = driver.find_element_by_css_selector(

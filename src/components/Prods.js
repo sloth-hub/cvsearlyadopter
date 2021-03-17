@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { dbService } from "../fbase";
 import Rating from '@material-ui/lab/Rating';
 
-const Prods = ({ prods }) => {
+const Prods = ({ index, prods, cvs }) => {
 
     const [score, setScore] = useState(0);
 
@@ -35,8 +35,8 @@ const Prods = ({ prods }) => {
                 doc.data().score
             );
         });
-            const resultScore = scores.reduce((a, b) => a + b, 0) / scores.length;
-            setScore(resultScore);
+        const resultScore = scores.reduce((a, b) => a + b, 0) / scores.length;
+        setScore(resultScore);
     }
 
     return (
@@ -49,7 +49,9 @@ const Prods = ({ prods }) => {
                     image: prods.image,
                     price: prods.price,
                     score: score,
-                    date: prods.date
+                    date: prods.date,
+                    cvs: cvs,
+                    index: index
                 }
             }}>
                 <img src={prods.image} alt={prods.name} />

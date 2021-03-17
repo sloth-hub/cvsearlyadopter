@@ -55,13 +55,13 @@ def update_new_prods(prods, directory):
     fb_database = ref.get()
     # 중복검사하여 새로운 상품만 추출
     names = {item["name"] for item in fb_database}
-    new_prods = [item for item in prods if item["name"] not in names]
+    new_prods = {item for item in prods if item["name"] not in names}
     if not new_prods:
         return f"{directory}의 신제품이 없습니다."
     else:
         length = len(fb_database)  # 데이터베이스의 length 구하기
         for i, v in enumerate(new_prods):
-            ref.update({length+i: v})
+            ref.update({v.prod_id: v})
         return f"{directory}의 신제품 업로드가 완료되었습니다."
 
 if __name__ == "__main__":
