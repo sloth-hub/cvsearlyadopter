@@ -1,0 +1,220 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a {
+    text-decoration: none;
+}
+button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+button:focus {
+    outline: none;
+}
+
+/* container */
+.main_container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+/* header */
+header {
+    height: 74px;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+header nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+header nav ul {
+    display: flex;
+}
+header nav ul li {
+    line-height: 18px;
+}
+header nav ul li+li{
+    margin-left: 10px;
+}
+.header_title {
+    font-size: 32px;
+}
+.icon_loading, .icon_scrap {
+    width: 20px;
+    height: 20px;
+}
+
+/* best prods, new prods */
+section.best_prods_wrap,
+section.new_prods_wrap {
+    
+}
+.best_prods.title_box,
+.new_prods.title_box {
+    border: 1px solid #000;
+    width: 100px;
+    padding: 10px;
+    text-align: center;
+}
+.cvs_title_box {
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 8px;
+    text-align: center;
+}
+.best_prods_wrap ul,
+.new_prods_wrap ul {
+    display: flex;
+}
+
+/* best prods */
+
+/* new prods */
+img {
+    width: 165px;
+}
+
+/* prods */
+
+.prods_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.prods_list li {
+    margin: 0 20px 30px 0;
+}
+
+/* detail */
+
+.detail_box {
+    display: flex;
+}
+.prod_detail, .prod_review {
+    border: 1px solid #000;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* auth */
+
+
+.authInput {
+    max-width: 320px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 1);
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: black;
+    box-sizing: content-box;
+  }
+  
+  .authSubmit {
+    text-align: center;
+    background: #04aaff;
+    color: white;
+    margin-top: 10px;
+    box-sizing: content-box;
+    cursor: pointer;
+  }
+  
+  .authError {
+    color: tomato;
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+  }
+  
+  .authSwitch {
+    color: #04aaff;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    display: block;
+    font-size: 12px;
+    text-decoration: underline;
+  }
+
+  .authBtns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .authBtn {
+    cursor: pointer;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 0px;
+    font-size: 12px;
+    text-align: center;
+    width: 150px;
+    background: white;
+    cursor: pointer;
+  }
+
+/* footer */
+
+footer {
+    display: flex;
+    padding: 30px 0;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid black;
+}
