@@ -1,17 +1,8 @@
-# 편리어답터 (cvs-ealryadopter)
 
-편의점 신상을 확인하고 평점과 리뷰를 공유하는 웹서비스, '편리어답터'입니다.
+CVSNEW의 프로토타입이었던 React+Python 프로젝트입니다. 
 
-___
-## TECHNOLOGIES
-  
- + HTML
- + CSS
- + Javascript
- + React
- + Python
- + Git, Github
+프로젝트의 여러가지 오류와 문제 등으로 인해 React+Node.js 프로젝트로 다시 개발했습니다.
 
-___
-## COPYING / LICENSE
- +
+👇
+
+https://github.com/sloth-hub/cvsnew
